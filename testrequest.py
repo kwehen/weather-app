@@ -8,7 +8,12 @@ import logging
 
 email = input("Enter your email: ")
 zip_code = input("Enter your zip code: ")
-# Subscribe an email address to a topic
+zip_url = "https://api.api-ninjas.com/v1/zipcode"
+
+city = requests.get(f"{zip_url}?zip={zip_code}", headers={"X-Api-Key": sensitive.zip_api_key})
+city = city.json()
+area = city[0]['city']
+
 while True:
     base_url = "https://api.weatherapi.com/v1/current.json"
     api_key = sensitive.api_key
@@ -51,13 +56,13 @@ while True:
             string4 = "cast"
 
             if string in condition:
-                beginning = f"Right now in your area {zip_code} it is cloudy"
+                beginning = f"Right now in {area} it is cloudy"
             elif string2 in condition:
-                beginning = f"Right now in your area {zip_code} it is clear"
+                beginning = f"Right now in {area} it is clear"
             elif string3 in condition:
-                beginning = f"Right now in your area {zip_code} it is raining"
+                beginning = f"Right now in {area} it is raining"
             elif string4 in condition:
-                beginning = f"Right now in your area {zip_code} it is overcast"
+                beginning = f"Right now in {area} it is overcast"
 
             response = client.publish(TopicArn=sensitive.sns_topic_arn,Message=f"{beginning} and the temperature is {temperature} degrees Fahrenheit.")
             print("Message sent")
