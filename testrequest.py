@@ -7,7 +7,6 @@ import sensitive
 while True:
     base_url = "https://api.weatherapi.com/v1/current.json"
     api_key = sensitive.api_key
-    # ip = get('https://api.ipify.org').content.decode('utf8')
     zip_code = input("Enter your zip code: ")
 
     r = requests.get(f"{base_url}?key={api_key}&q={zip_code}")
