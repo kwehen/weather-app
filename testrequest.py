@@ -21,6 +21,7 @@ while True:
         string = "cloudy"
         string2 = "clear"
         string3 = "rain"
+        string4 = "cast"
 
         if string in condition:
             beginning = "Right now it is cloudy"
@@ -28,6 +29,8 @@ while True:
             beginning = "Right now it is clear"
         elif string3 in condition:
             beginning = "Right now it is raining"
+        elif string4 in condition:
+            beginning = "Right now it is overcast"
 
-        print(f"{beginning} and the temperature is {temperature} degrees Fahrenheit")
+        print(f"{beginning} and the temperature is {temperature} degrees Fahrenheit.")
         break
