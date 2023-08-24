@@ -2,8 +2,6 @@ import requests
 import json
 import sensitive
 
-#https://api.weatherapi.com/v1/forecast.json?key=1e94077df3f947d6bff03526232408&q=48237
-
 base_url = "https://api.weatherapi.com/v1/current.json"
 api_key = sensitive.api_key
 zip_code = input("Enter your zip code: ")
