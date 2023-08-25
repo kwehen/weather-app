@@ -38,7 +38,7 @@ def create_topic(name):
         return topic
 
 topic_name = "WeatherUpdates"
-create_topic(topic_name)
+topicArn = create_topic(topic_name)
 
 def subscribe(topic, protocol, endpoint):
     try:
@@ -55,4 +55,4 @@ def subscribe(topic, protocol, endpoint):
     else:
         return subscription
     
-subscribe(topic_name, 'email', email)
+subscribe(topicArn, 'email', email)
