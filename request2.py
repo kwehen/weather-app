@@ -5,6 +5,7 @@ import sensitive
 import boto3
 from botocore.exceptions import ClientError
 import logging
+import time
 
 email = input("Enter your email: ")
 zip_code = input("Enter your zip code: ")
@@ -69,6 +70,7 @@ while True:
     if "error" in r:
         print(f"{zip_code} is not a valid zip code")
     else:
+        time.sleep(60)
         condition = r["current"]["condition"]["text"]
         temperature = r["current"]["temp_f"]
 
@@ -76,6 +78,7 @@ while True:
         string2 = "clear"
         string3 = "rain"
         string4 = "cast"
+        string5 = "heavy"
 
         if string in condition:
             beginning = f"Right now in {area} it is cloudy"
@@ -85,7 +88,9 @@ while True:
             beginning = f"Right now in {area} it is raining"
         elif string4 in condition:
             beginning = f"Right now in {area} it is overcast"
+        elif string3 and string5 in condition:
+            beginning = f"Right now in {area} it is raining heavily"
 
         response = sns_client.publish(TopicArn=topicArn['TopicArn'],Message=f"{beginning} and the temperature is {temperature} degrees Fahrenheit.")
         print("Message sent")
-        break
+        continue
