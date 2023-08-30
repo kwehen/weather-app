@@ -79,6 +79,7 @@ while True:
         string3 = "rain"
         string4 = "cast"
         string5 = "heavy"
+        string6 = "thunder"
 
         if string in condition:
             beginning = f"Right now in {area} it is cloudy"
@@ -90,6 +91,8 @@ while True:
             beginning = f"Right now in {area} it is overcast"
         elif string3 and string5 in condition:
             beginning = f"Right now in {area} it is raining heavily"
+        elif string3 and string5 and string6 in condition:
+            beginning = f"Right now in {area} it is raining heavily with thunder"
 
         response = sns_client.publish(TopicArn=topicArn['TopicArn'],Message=f"{beginning} and the temperature is {temperature} degrees Fahrenheit.")
         print("Message sent")
